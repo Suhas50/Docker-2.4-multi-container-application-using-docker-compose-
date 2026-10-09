@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker Compose Project</title>
+</head>
+<body>
+
+<h1>Docker Compose Multi-Container Application</h1>
+
+<button onclick="checkBackend()">Check Backend</button>
+<button onclick="checkDatabase()">Check Database</button>
+
+<p id="result"></p>
+
+<script>
+async function checkBackend() {
+    const response = await fetch("/api");
+    const data = await response.json();
+
+    document.getElementById("result").innerText =
+        data.message + " - " + data.database;
+}
+
+async function checkDatabase() {
+    const response = await fetch("/db");
+    const data = await response.text();
+
+    document.getElementById("result").innerText = data;
+}
+</script>
+
+</body>
+</html>
